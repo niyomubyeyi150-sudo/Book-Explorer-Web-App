@@ -1,60 +1,98 @@
-import './style.css'
-import heroImg from './assets/hero.png'
-import javascriptLogo from './assets/javascript.svg'
-import viteLogo from './assets/vite.svg'
 
+import "./style.css";
+import { getFavorites, addFavorite } from "./favorites.js";
 
-document.querySelector('#app').innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${javascriptLogo}" class="framework" alt="JavaScript logo"/>
-    <img src="${viteLogo}" class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.js</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
+const books = [
+  {
+    id: 1,
+    title: "Atomic Habits",
+    author: "James Clear",
+    cover: "https://covers.openlibrary.org/b/isbn/9780735211292-M.jpg",
+  },
+  {
+    id: 2,
+    title: "The Alchemist",
+    author: "Paulo Coelho",
+    cover: "https://covers.openlibrary.org/b/isbn/9780061122415-M.jpg",
+  },
+  {
+    id: 3,
+    title: "Rich Dad Poor Dad",
+    author: "Robert T. Kiyosaki",
+    cover: "https://covers.openlibrary.org/b/isbn/9781612680194-M.jpg",
+  },
+  {
+    id: 4,
+    title: "Think and Grow Rich",
+    author: "Napoleon Hill",
+    cover: "https://covers.openlibrary.org/b/isbn/9781585424337-M.jpg",
+  },
+];
 
-<div class="ticks"></div>
+const bookList = document.getElementById("book-list");
 
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src="${viteLogo}" alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-          <img class="button-icon" src="${javascriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
+function renderBooks() {
+  if (!bookList) return;
 
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
+  const favorites = getFavorites();
+  bookList.replaceChildren();
 
-setupCounter(document.querySelector('#counter'))
+  books.forEach((book) => {
+    const isFavorite = favorites.some(
+      (favorite) => favorite.id === book.id
+    );
+
+    const card = document.createElement("article");
+    card.className =
+      "rounded-2xl border border-[#E5E3D9] bg-white p-4 shadow-sm";
+
+    const cover = document.createElement("img");
+    cover.src = book.cover;
+    cover.alt = `Cover of ${book.title}`;
+    cover.loading = "lazy";
+    cover.className = "mb-4 h-56 w-full rounded-lg object-contain";
+
+    const title = document.createElement("h3");
+    title.textContent = book.title;
+    title.className = "text-lg font-semibold text-[#26372D]";
+
+    const author = document.createElement("p");
+    author.textContent = `By ${book.author}`;
+    author.className = "mb-4 mt-2 text-sm text-[#687665]";
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.add = String(book.id);
+    button.textContent = isFavorite
+      ? "Added to Favorites ✓"
+      : "Add to Favorites ♥";
+    button.disabled = isFavorite;
+    button.className =
+      "w-full rounded-lg bg-[#293B2B] px-4 py-2 text-white hover:bg-[#3F6948] disabled:cursor-not-allowed disabled:opacity-60";
+
+    card.append(cover, title, author, button);
+    bookList.appendChild(card);
+  });
+}
+
+// Listen for clicks on the book list.
+if (bookList) {
+  bookList.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-add]");
+
+    // Ignore clicks that are not on an Add button.
+    if (!button) return;
+
+    const bookId = Number(button.dataset.add);
+    const selectedBook = books.find((book) => book.id === bookId);
+
+    if (!selectedBook) return;
+
+    // Save the selected book and refresh the homepage.
+    addFavorite(selectedBook);
+    renderBooks();
+  });
+}
+
+// Show the books when the homepage loads.
+renderBooks();
