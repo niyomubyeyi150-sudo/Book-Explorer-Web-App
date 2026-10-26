@@ -4,15 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="description" content="Learn about BookHaven, discover new books, and keep your favorite stories in one place." >
   <title>About Us | BookHaven</title>
-  <meta
-    name="description"
-    content="Learn about BookHaven, discover new books, and keep your favorite stories in one place."
-  >
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="./src/style.css">
 </head>
 
 <body class="min-h-screen bg-[#F8F7F2] text-[#26372D]">
@@ -20,29 +14,14 @@
   <!-- Navigation -->
   <header class="sticky top-0 z-50 border-b border-[#E5E5DC] bg-[#F8F7F2]">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-
-      <!-- Website logo -->
       <a href="index.html" class="text-2xl font-bold tracking-tight">
         Book<span class="text-[#66816A]">Haven</span>
       </a>
 
-      <!-- Navigation links -->
       <div class="flex items-center gap-4 text-sm font-medium sm:gap-7 sm:text-base">
-        <a href="index.html" class="transition hover:text-[#66816A]">
-          Home
-        </a>
-
-        <a href="index.html#favorites" class="transition hover:text-[#66816A]">
-          Favorites
-        </a>
-
-        <a
-          href="about.html"
-          aria-current="page"
-          class="border-b-2 border-[#66816A] pb-1 text-[#66816A]"
-        >
-          About
-        </a>
+        <a href="index.html" class="transition hover:text-[#66816A]">Home</a>
+        <a href="index.html#favorites" class="transition hover:text-[#66816A]">Favorites</a>
+        <a href="about.html" aria-current="page" class="border-b-2 border-[#66816A] pb-1 text-[#66816A]">About </a>
       </div>
 
     </nav>
@@ -253,7 +232,6 @@
       </div>
     </section>
 
-    <!-- Final call to action -->
     <section class="px-5 py-16 sm:py-20">
       <div class="mx-auto max-w-6xl rounded-3xl bg-[#293B2B] px-6 py-12 text-center text-white sm:px-12 sm:py-16">
 
@@ -282,6 +260,6 @@
   <footer class="border-t border-[#E5E5DC] px-5 py-7 text-center text-sm text-[#687665]">
     <p>&copy; 2026 BookHaven. Discover your next chapter.</p>
   </footer>
-
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>
