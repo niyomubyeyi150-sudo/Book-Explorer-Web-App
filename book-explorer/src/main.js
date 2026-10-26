@@ -96,3 +96,47 @@ if (bookList) {
 
 // Show the books when the homepage loads.
 renderBooks();
+
+/**
+ * Sets up the responsive mobile navigation menu.
+ * This function safely runs on pages that contain the menu.
+ */
+function setupMobileMenu() {
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+
+  // Stop if this page does not contain the mobile navigation.
+  if (!menuToggle || !mobileMenu || !menuIcon) return;
+
+  // Open or close the menu when the hamburger is clicked.
+  menuToggle.addEventListener("click", () => {
+    const isClosed = mobileMenu.classList.contains("hidden");
+
+    mobileMenu.classList.toggle("hidden");
+    mobileMenu.classList.toggle("flex");
+
+    menuIcon.textContent = isClosed ? "×" : "☰";
+
+    menuToggle.setAttribute("aria-expanded", String(isClosed));
+    menuToggle.setAttribute(
+      "aria-label",
+      isClosed ? "Close navigation menu" : "Open navigation menu"
+    );
+  });
+
+  // Close the menu after the user selects a link.
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+      mobileMenu.classList.remove("flex");
+      menuIcon.textContent = "☰";
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation menu");
+    });
+  });
+}
+
+// Initialize the mobile menu on pages where it exists.
+setupMobileMenu();
+
