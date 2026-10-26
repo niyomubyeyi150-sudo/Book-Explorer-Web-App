@@ -11,21 +11,61 @@
 
 <body class="min-h-screen bg-[#F8F7F2] text-[#26372D]">
 
-  <!-- Navigation -->
-  <header class="sticky top-0 z-50 border-b border-[#E5E5DC] bg-[#F8F7F2]">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
-      <a href="index.html" class="text-2xl font-bold tracking-tight">
-        Book<span class="text-[#66816A]">Haven</span>
+  
+<header class="sticky top-0 z-50 border-b border-[#E5E3D9] bg-[#F8F7F2]">
+  <nav
+    class="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8"
+    aria-label="Main navigation"
+  >
+    <a
+      href="./index.html"
+      class="text-2xl font-bold text-[#293B2B]"
+    >
+      BookHaven<span class="text-[#D99A42]">.</span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <div class="hidden items-center gap-8 md:flex">
+      <a href="./index.html" class="font-medium text-[#293B2B] hover:text-[#66816A]">
+        Home
       </a>
+      <a href="./favorites.html" class="font-medium text-[#293B2B] hover:text-[#66816A]">
+        Favorites
+      </a>
+      <a href="./about.html" class="font-medium text-[#293B2B] hover:text-[#66816A]">
+        About
+      </a>
+    </div>
 
-      <div class="flex items-center gap-4 text-sm font-medium sm:gap-7 sm:text-base">
-        <a href="index.html" class="transition hover:text-[#66816A]">Home</a>
-        <a href="#favorites" class="transition hover:text-[#66816A]">Favorites</a>
-        <a href="about.html" aria-current="page" class="border-b-2 border-[#66816A] pb-1 text-[#66816A]">About </a>
-      </div>
+    <!-- Hamburger button for mobile -->
+    <button
+      id="menu-toggle"
+      type="button"
+      class="flex h-10 w-10 items-center justify-center rounded-lg border border-[#E5E3D9] text-2xl text-[#293B2B] hover:bg-[#E5E3D9] md:hidden"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span id="menu-icon" aria-hidden="true">☰</span>
+    </button>
 
-    </nav>
-  </header>
+    <!-- Mobile navigation -->
+    <div
+      id="mobile-menu"
+      class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-1 border-b border-[#E5E3D9] bg-[#F8F7F2] p-5 shadow-lg md:hidden"
+    >
+      <a href="./index.html" class="rounded-lg px-4 py-3 font-medium text-[#293B2B] hover:bg-[#E5E3D9]">
+        Home
+      </a>
+      <a href="./favorites.html" class="rounded-lg px-4 py-3 font-medium text-[#293B2B] hover:bg-[#E5E3D9]">
+        Favorites
+      </a>
+      <a href="./about.html" class="rounded-lg px-4 py-3 font-medium text-[#293B2B] hover:bg-[#E5E3D9]">
+        About
+      </a>
+    </div>
+  </nav>
+</header>
 
   <main>
 

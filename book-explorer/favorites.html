@@ -17,38 +17,62 @@
 
   <body class="min-h-screen bg-[#F8F7F2] text-[#26372D]">
 
-    <!-- Navigation -->
-    <header class="sticky top-0 z-50 border-b border-[#E5E3D9] bg-white/95 shadow-sm backdrop-blur">
-      <nav
-        class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8"
-        aria-label="Main navigation"
-      >
-        <a
-          href="./index.html"
-          class="shrink-0 text-xl font-extrabold tracking-tight text-[#26372D] sm:text-2xl"
-        >
-          BookHaven<span class="text-[#D99A42]">.</span>
-        </a>
+    
+<header class="sticky top-0 z-50 border-b border-[#E5E3D9] bg-[#F8F7F2]">
+  <nav
+    class="relative mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8"
+    aria-label="Main navigation"
+  >
+    <a
+      href="./index.html"
+      class="text-2xl font-bold text-[#293B2B]"
+    >
+      BookHaven<span class="text-[#D99A42]">.</span>
+    </a>
 
-        <div class="flex flex-wrap items-center justify-end gap-3 text-sm font-medium sm:gap-7 sm:text-base">
-          <a href="./index.html" class="transition hover:text-[#3F6948]">
-            Home
-          </a>
+    <!-- Desktop navigation -->
+    <div class="hidden items-center gap-8 md:flex">
+      <a href="./index.html" class="font-medium text-[#293B2B] hover:text-[#66816A]">
+        Home
+      </a>
+      <a href="./favorites.html" class="font-medium text-[#293B2B] hover:text-[#66816A]">
+        Favorites
+      </a>
+      <a href="./about.html" class="font-medium text-[#293B2B] hover:text-[#66816A]">
+        About
+      </a>
+    </div>
 
-          <a
-            href="./favorites.html"
-            aria-current="page"
-            class="text-[#3F6948] underline underline-offset-4"
-          >
-            Favorites
-          </a>
+    <!-- Hamburger button for mobile -->
+    <button
+      id="menu-toggle"
+      type="button"
+      class="flex h-10 w-10 items-center justify-center rounded-lg border border-[#E5E3D9] text-2xl text-[#293B2B] hover:bg-[#E5E3D9] md:hidden"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span id="menu-icon" aria-hidden="true">☰</span>
+    </button>
 
-          <a href="./about.html" class="transition hover:text-[#3F6948]">
-            About
-          </a>
-        </div>
-      </nav>
-    </header>
+    <!-- Mobile navigation -->
+    <div
+      id="mobile-menu"
+      class="absolute left-0 right-0 top-full z-50 hidden flex-col gap-1 border-b border-[#E5E3D9] bg-[#F8F7F2] p-5 shadow-lg md:hidden"
+    >
+      <a href="./index.html" class="rounded-lg px-4 py-3 font-medium text-[#293B2B] hover:bg-[#E5E3D9]">
+        Home
+      </a>
+      <a href="./favorites.html" class="rounded-lg px-4 py-3 font-medium text-[#293B2B] hover:bg-[#E5E3D9]">
+        Favorites
+      </a>
+      <a href="./about.html" class="rounded-lg px-4 py-3 font-medium text-[#293B2B] hover:bg-[#E5E3D9]">
+        About
+      </a>
+    </div>
+  </nav>
+</header>
+
 
     <main class="mx-auto min-h-[70vh] max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
 
@@ -149,6 +173,6 @@
 
     <!-- Load the JavaScript that manages this page's favorites. -->
     <script type="module" src="./src/favorites-page.js"></script>
-
+    <script type="module" src="/src/main.js"></script> 
   </body>
 </html>
