@@ -5,5 +5,5 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [tailwindcss(),],
      home:'index.html',
-    about:'about.html',
+     brand:'about.html',
 });
