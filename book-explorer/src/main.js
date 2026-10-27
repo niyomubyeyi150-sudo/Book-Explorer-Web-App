@@ -36,7 +36,8 @@ function renderBooks() {
 
     const card = document.createElement("article");
     card.className =
-      "rounded-2xl border border-[#E5E3D9] bg-white p-4 shadow-sm";
+card.className =
+  "flex h-[480px] min-w-0 flex-col overflow-hidden rounded-2xl border border-[#E5E3D9] bg-white p-5 shadow-sm";
 
     // Display the cover when the API provides a cover ID.
     if (book.cover) {
