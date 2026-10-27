@@ -1,4 +1,3 @@
-
 import "./style.css";
 import { getFavorites, addFavorite } from "./favorites.js";
 import { fetchBooks } from "./fetchBooks.js";
