@@ -95,10 +95,12 @@ async function loadBooks(searchTerm = "fiction") {
 
   // Show loading feedback before making the request.
   bookList.replaceChildren();
-  showStatus("Loading books...");
+  showStatus("Loading books...","loading");
 
   try {
-    const results = await fetchBooks(searchTerm);
+   console.time("Books API loading time");
+   const results = await fetchBooks(searchTerm);
+   console.timeEnd("Books API loading time");
 
     // Convert API results into the format used by our book cards.
     books = results.map((book) => ({
